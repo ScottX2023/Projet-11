@@ -16,7 +16,6 @@ const SignIn = () => {
 
     try {
       const responseData = await dispatch(loginUser(email, password));
-      console.log('responseData:', responseData);
       console.log('responseData.token:', responseData.body.token);
       if (responseData && responseData.body.token) {
         dispatch(setToken(responseData.body.token));

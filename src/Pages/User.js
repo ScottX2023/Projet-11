@@ -42,9 +42,9 @@ const User = () => {
       <div className="header">
         {editingUserName ? (
           <div >
-            <h1>Edit User Info</h1>
+            <h1 className='header-title' >Edit User Info</h1>
             <div className='input-container'>
-              <label>Username:</label>
+              <label>Username</label>
               <input
                 id="usernameInput"
                 type="text"
@@ -54,14 +54,14 @@ const User = () => {
                 }}
               />
 
-              <label>First Name:</label>
+              <label>First Name</label>
               <input
                 type="text"
                 value={firstName}
                 disabled
               />
 
-              <label>Last Name:</label>
+              <label>Last Name</label>
               <input
                 type="text"
                 value={lastName}
@@ -69,13 +69,13 @@ const User = () => {
               />
             </div>
             <div className='btn-container'>
-              <button className='edit-button' onClick={handleSave}>Save</button>
-              <button className='edit-button' onClick={handleCancel}>Cancel</button>
+              <button className='edit-user-button' onClick={handleSave}>Save</button>
+              <button className='edit-user-button' onClick={handleCancel}>Cancel</button>
             </div>  
           </div>
         ) : (
           <div>
-            <h1>Welcome back, {firstName} {lastName} !</h1>
+            <h1 className='header-title' >Welcome back, {firstName} {lastName} !</h1>
             <button className="edit-button" onClick={handleEditName}>
               Edit Name
             </button>
