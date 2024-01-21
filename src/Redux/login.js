@@ -18,7 +18,6 @@ export const loginUser = (email, password) => async (dispatch) => {
 
       dispatch(setToken(token));
       console.log('API Response:', responseData);
-      console.log('Token:', token);
   
       return responseData;
     } catch (error) {

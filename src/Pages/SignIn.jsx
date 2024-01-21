@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { setToken } from '../Redux/auth';
 import { loginUser } from '../Redux/login';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -20,9 +22,10 @@ const SignIn = () => {
       if (responseData && responseData.body.token) {
         dispatch(setToken(responseData.body.token));
         navigate('/user');
-      }
+      } 
     } catch (error) {
       console.error('Login error:', error);
+      setErrorMessage('Invalid username or password. Please try again.');
     }
   };
 
@@ -31,6 +34,7 @@ const SignIn = () => {
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <form onSubmit={handleSignIn}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>

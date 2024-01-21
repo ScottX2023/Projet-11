@@ -71,7 +71,7 @@ body {
 }
 
 .hero {
-  background-image: url('../src/Assets/bank-tree.jpeg');
+  background-image: url('../src/Assets/bank-tree.webp');
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -318,4 +318,8 @@ body {
   padding: 10px;
   width: 5%;
   margin-top: 10px;
+}
+
+.error-message {
+  color: red;
 }

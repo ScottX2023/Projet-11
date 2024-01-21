@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserProfile } from '../Redux/userProfile';
 import { updateUserProfile } from '../Redux/updateUserProfile';
 import { useNavigate } from 'react-router-dom';
-import { updateUserName } from '../Redux/user';
 
 const User = () => {
   const dispatch = useDispatch();
@@ -11,6 +10,7 @@ const User = () => {
   const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
   const [editingUserName, setEditingUserName] = useState(false);
+  const [newUserName, setNewUserName] = useState(userName);
 
   useEffect(() => {
     if (!token) {
@@ -26,7 +26,7 @@ const User = () => {
 
   const handleSave = async () => {
     try {
-      await dispatch(updateUserProfile(userName));
+      await dispatch(updateUserProfile(newUserName));
       setEditingUserName(false);
     } catch (error) {
       console.error('Failed to update user profile:', error);
@@ -35,22 +35,23 @@ const User = () => {
 
   const handleCancel = () => {
     setEditingUserName(false);
+    setNewUserName(userName);
   };
 
   return (
     <main className="bg-dark main">
       <div className="header">
         {editingUserName ? (
-          <div >
+          <div>
             <h1 className='header-title' >Edit User Info</h1>
             <div className='input-container'>
               <label>Username</label>
               <input
                 id="usernameInput"
                 type="text"
-                value={userName}
+                value={newUserName} 
                 onChange={(e) => {
-                  dispatch(updateUserName(e.target.value));
+                  setNewUserName(e.target.value); 
                 }}
               />
 
